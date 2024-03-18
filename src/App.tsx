@@ -1,9 +1,23 @@
 import "./App.css";
+import MainContent from "./pages/MainContent";
 
 export default function App() {
   return (
-    <button className="bg-sky-700 px-4 py-2 text-white hover:bg-sky-800 sm:px-8 sm:py-3">
-      ...
-    </button>
+    <>
+      <div className="bg-background flex h-screen flex-col">
+        <Logo />
+        <MainContent />
+      </div>
+    </>
+  );
+}
+
+function Logo() {
+  return (
+    <>
+      <div className="text-primary left-10 top-10 my-4 ml-5 text-2xl">
+        Stackr.ai
+      </div>
+    </>
   );
 }
