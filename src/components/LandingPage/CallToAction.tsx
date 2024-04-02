@@ -15,6 +15,7 @@ export default function CallToAction() {
     }
   }, []);
 
+  // TODO Sanitize the input (e.g. remove whitespace, check for valid API key format, etc.)
   const handleChange = (e: react.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setApiKey(value);
@@ -38,9 +39,9 @@ export default function CallToAction() {
         <p className="m-4 w-2/3 text-wrap text-center text-xl text-slate-600">
           Give your project its best possible start
         </p>
-        <div className="horizontal center-h center-v w-auto rounded-xl bg-gray-200">
+        <div className="horizontal center-h center-v w-auto gap-2 rounded-xl bg-gray-200">
           <input
-            className="inset-1 m-2 h-fit rounded-lg p-2"
+            className="inset-1 my-2 ml-2 h-fit rounded-lg p-2"
             type={inputType}
             onFocus={handleFocus}
             onBlur={handleBlur}
@@ -51,7 +52,7 @@ export default function CallToAction() {
           ></input>
           <button
             onClick={handleClick}
-            className="m-2 h-auto w-fit text-nowrap rounded-lg bg-green-800 px-4 py-2 text-white shadow"
+            className="my-2 mr-2 h-auto w-fit text-nowrap rounded-lg bg-green-800 px-4 py-2 text-white shadow"
           >
             Get Started
           </button>
