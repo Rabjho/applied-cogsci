@@ -1,12 +1,12 @@
 import "./App.css";
-import MainContent from "./pages/MainContent";
+import Survey from "./pages/Survey";
 
 export default function App() {
   return (
     <>
       <div className="bg-background flex h-screen flex-col">
         <Logo />
-        <MainContent />
+        <Survey />
       </div>
     </>
   );

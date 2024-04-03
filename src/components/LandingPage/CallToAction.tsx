@@ -1,11 +1,15 @@
 import react, { useState, useEffect } from "react";
 
-export default function CallToAction() {
+interface CallToActionProps {
+  onTrigger: (answer: string) => void;
+}
+
+export default function CallToAction({ onTrigger }: CallToActionProps) {
   const [inputType, setInputType] = useState("password");
   const [apiKey, setApiKey] = useState("");
 
-  const handleNext = () => {
-    console.log("Next");
+  const handleAnswer = () => {
+    onTrigger(window.localStorage.getItem("apiKey") ?? "");
   };
 
   useEffect(() => {
@@ -30,7 +34,7 @@ export default function CallToAction() {
 
   const handleClick = (e: react.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    handleNext();
+    handleAnswer();
   };
 
   return (
