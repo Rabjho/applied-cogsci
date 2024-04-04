@@ -1,6 +1,7 @@
-import LandingPage from "../components/LandingPage/LandingPage";
-import Scope from "../components/Scope";
-import PrevNextButtons from "../components/PrevNextButtons";
+import LandingPage from "./LandingPage/LandingPage";
+import Scope from "./Scope";
+import Type from "./Type";
+import PrevNextButtons from "./PrevNextButtons";
 import { useState } from "react";
 
 export default function Survey() {
@@ -10,7 +11,7 @@ export default function Survey() {
   const questionComponents = [
     LandingPage,
     Scope,
-    Scope,
+    Type,
     // Description,
     // Experience,
     // Priorities,
@@ -27,7 +28,7 @@ export default function Survey() {
   const nextQuestion = () => {
     // Check if we're at the last question
     if (currentQuestion === questionComponents.length - 1) return;
-    setCurrentQuestion(currentQuestion + 1);
+    setCurrentQuestion((prevIndex) => prevIndex + 1);
   };
 
   const prevQuestion = () => {
@@ -40,13 +41,20 @@ export default function Survey() {
 
   return (
     <>
-      <CurrentQuestionComponent onAnswer={handleAnswer} />
-      <PrevNextButtons
-        onNext={nextQuestion}
-        onPrev={prevQuestion}
-        currentStep={currentQuestion}
-        totalSteps={questionComponents.length}
-      />
+      <div className="vertical center h-auto flex-grow overflow-hidden">
+        <div className=""></div>
+        <div>
+          <CurrentQuestionComponent onAnswer={handleAnswer} />
+        </div>
+      </div>
+      <div className="absolute bottom-0 h-fit w-full">
+        <PrevNextButtons
+          onNext={nextQuestion}
+          onPrev={prevQuestion}
+          currentStep={currentQuestion}
+          totalSteps={questionComponents.length}
+        />
+      </div>
     </>
   );
 }

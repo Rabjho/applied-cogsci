@@ -9,7 +9,7 @@ export default function CallToAction({ onTrigger }: CallToActionProps) {
   const [apiKey, setApiKey] = useState("");
 
   const handleAnswer = () => {
-    onTrigger(window.localStorage.getItem("apiKey") ?? "");
+    onTrigger('window.localStorage.getItem("apiKey")');
   };
 
   useEffect(() => {
@@ -52,7 +52,8 @@ export default function CallToAction({ onTrigger }: CallToActionProps) {
             onChange={handleChange}
             onLoad={handleChange}
             value={apiKey}
-            placeholder="Enter your API key here"
+            placeholder="Enter your API key"
+            size={15}
           ></input>
           <button
             onClick={handleClick}

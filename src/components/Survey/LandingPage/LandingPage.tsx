@@ -8,10 +8,8 @@ interface LandingPageProps {
 export default function LandingPage({ onAnswer }: LandingPageProps) {
   return (
     <>
-      <div className="vertical center-v h-svh w-full">
-        <HeroText />
-        <CallToAction onTrigger={onAnswer} />
-      </div>
+      <HeroText />
+      <CallToAction onTrigger={onAnswer} />
     </>
   );
 }
