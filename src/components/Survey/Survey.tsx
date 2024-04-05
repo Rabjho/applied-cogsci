@@ -1,6 +1,7 @@
 import LandingPage from "./LandingPage/LandingPage";
 import Scope from "./Scope";
 import Type from "./Type";
+import PlatformChoice from "./PlatformChoice";
 import PrevNextButtons from "./PrevNextButtons";
 import { useState } from "react";
 
@@ -12,7 +13,7 @@ export default function Survey() {
     LandingPage,
     Scope,
     Type,
-    // Description,
+    Scope, // For testing
     // Experience,
     // Priorities,
   ];
@@ -21,7 +22,6 @@ export default function Survey() {
     const newAnswers = [...answers];
     newAnswers[currentQuestion] = answer;
     setAnswers(newAnswers);
-
     nextQuestion();
   };
 
@@ -43,9 +43,7 @@ export default function Survey() {
     <>
       <div className="vertical center h-auto flex-grow overflow-hidden">
         <div className=""></div>
-        <div>
-          <CurrentQuestionComponent onAnswer={handleAnswer} />
-        </div>
+        <div>{<CurrentQuestionComponent onAnswer={handleAnswer} />}</div>
       </div>
       <div className="absolute bottom-0 h-fit w-full">
         <PrevNextButtons
