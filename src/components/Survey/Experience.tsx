@@ -3,21 +3,23 @@ import QuestionTitle from "../Survey/QuestionTitle";
 import { useContext } from "react";
 import { SurveyContext } from "./Survey";
 
-interface DescriptionProps {
+interface ExperienceProps {
   onAnswer: (answer: string) => void;
 }
 
-export default function Description({ onAnswer }: DescriptionProps) {
+export default function Experience({ onAnswer }: ExperienceProps) {
   const answers = useContext(SurveyContext);
-  const description = answers[3];
+  const experience = answers[4];
 
   return (
     <>
-      <QuestionTitle>Describe your project in a few sentences</QuestionTitle>
+      <QuestionTitle>
+        Which relevant technologies do you have experience with?
+      </QuestionTitle>
       <InputField
-        placeholder="I am building ..."
+        placeholder="I have experience with ..."
         onTrigger={onAnswer}
-        value={description}
+        value={experience}
       />
     </>
   );

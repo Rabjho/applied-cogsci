@@ -16,12 +16,6 @@ export default function PlatformChoice({ onAnswer }: PlatformChoiceProps) {
           onTrigger={onAnswer}
         />
       )}
-      {projectType === "Desktop" && (
-        <ChoiceCards
-          choices={["Mac", "Windows", "Both"]}
-          onTrigger={onAnswer}
-        />
-      )}
     </>
   );
 }

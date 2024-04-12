@@ -1,9 +1,15 @@
 import LandingPage from "./LandingPage/LandingPage";
 import Scope from "./Scope";
 import Type from "./Type";
-import PlatformChoice from "./PlatformChoice";
 import PrevNextButtons from "./PrevNextButtons";
-import { useState } from "react";
+import Description from "./Description";
+import Experience from "./Experience";
+// import Priorities from "./Priorities";
+
+import { createContext, useState } from "react";
+import QueryGPT4 from "./QueryGPT4";
+
+export const SurveyContext = createContext([""]);
 
 export default function Survey() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -13,8 +19,9 @@ export default function Survey() {
     LandingPage,
     Scope,
     Type,
-    Scope, // For testing
-    // Experience,
+    // PlatformChoice,
+    Description,
+    Experience,
     // Priorities,
   ];
 
@@ -25,9 +32,15 @@ export default function Survey() {
     nextQuestion();
   };
 
-  const nextQuestion = () => {
+  const nextQuestion = async () => {
     // Check if we're at the last question
-    if (currentQuestion === questionComponents.length - 1) return;
+    if (currentQuestion === questionComponents.length - 1) {
+      const apiKey = window.localStorage.getItem("apiKey");
+      if (apiKey !== null) {
+        await QueryGPT4(apiKey);
+      }
+      return;
+    }
     setCurrentQuestion((prevIndex) => prevIndex + 1);
   };
 
@@ -41,18 +54,19 @@ export default function Survey() {
 
   return (
     <>
-      <div className="vertical center h-auto flex-grow overflow-hidden">
-        <div className=""></div>
-        <div>{<CurrentQuestionComponent onAnswer={handleAnswer} />}</div>
-      </div>
-      <div className="absolute bottom-0 h-fit w-full">
-        <PrevNextButtons
-          onNext={nextQuestion}
-          onPrev={prevQuestion}
-          currentStep={currentQuestion}
-          totalSteps={questionComponents.length}
-        />
-      </div>
+      <SurveyContext.Provider value={answers}>
+        <div className="vertical center h-auto flex-grow overflow-hidden">
+          {<CurrentQuestionComponent onAnswer={handleAnswer} />}
+        </div>
+        <div className="absolute bottom-0 h-fit w-full">
+          <PrevNextButtons
+            onNext={nextQuestion}
+            onPrev={prevQuestion}
+            currentStep={currentQuestion}
+            totalSteps={questionComponents.length}
+          />
+        </div>
+      </SurveyContext.Provider>
     </>
   );
 }
