@@ -1,15 +1,15 @@
 import ChoiceCards from "../ChoiceCards";
 import QuestionTitle from "../Survey/QuestionTitle";
-import { useContext } from "react";
-import { SurveyContext } from "./Survey";
+// import { useContext } from "react";
+// import { SurveyContext } from "./Survey";
 
 interface TypeProps {
   onAnswer: (answer: string) => void;
 }
 
 export default function Type({ onAnswer }: TypeProps) {
-  const answers = useContext(SurveyContext);
-  const currentType = answers[2];
+  // const answers = useContext(SurveyContext);
+  // const currentType = answers[2];
 
   return (
     <>
