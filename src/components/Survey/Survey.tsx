@@ -13,10 +13,10 @@ import { createContext, useState } from "react";
 export const SurveyContext = createContext<{ [key: string]: string }>({});
 
 export default function Survey() {
-  const [questionHistory, setNewQuestionHistory] = useState<number[]>([0]);
+  const [questionHistory, setNewQuestionHistory] = useState<number[]>([0, 0]);
   const [answers, setAnswers] = useState<{ [key: string]: string }>({});
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  // const [direction, setDirection] = useState<"next" | "prev">("next");
+  const direction =
+    questionHistory[0] - questionHistory[1] >= 0 ? "forward" : "backwards";
 
   const questionComponents = [
     LandingPage,
@@ -32,6 +32,11 @@ export default function Survey() {
     const newAnswers = { ...answers };
     newAnswers[questionComponents[questionHistory[0]].name] = answer;
     setAnswers(newAnswers);
+
+    if (questionHistory[0] === 2 && answer === "Web") {
+      directionalSkip();
+      return;
+    }
     nextQuestion();
   };
 
@@ -45,21 +50,26 @@ export default function Survey() {
       }
       return;
     }
-    if (questionHistory[0] == 2 && answers["Type"] === "Web") {
-      setNewQuestion(4);
-      return;
-    }
     setNewQuestion(questionHistory[0] + 1);
   };
 
   const prevQuestion = () => {
     // Check if we're at the first question
     if (questionHistory[0] === 0) return;
-    if (questionHistory[0] == 4 && answers["Type"] === "Web") {
+    if (questionHistory[0] === 4 && answers["Type"] === "Web") {
       setNewQuestion(2);
       return;
     }
     setNewQuestion(questionHistory[0] - 1);
+  };
+
+  const directionalSkip = () => {
+    // Check if we're at the last question
+    if (direction === "forward") {
+      setNewQuestion(questionHistory[0] + 2);
+    } else if (direction === "backwards") {
+      setNewQuestion(questionHistory[0] - 2);
+    }
   };
 
   const setNewQuestion = (i: number) => {
