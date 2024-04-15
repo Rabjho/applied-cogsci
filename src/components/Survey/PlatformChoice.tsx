@@ -1,6 +1,6 @@
 import ChoiceCards from "../ChoiceCards";
 import QuestionTitle from "./QuestionTitle";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { SurveyContext } from "./Survey";
 
 interface PlatformChoiceProps {
@@ -10,12 +10,6 @@ interface PlatformChoiceProps {
 export default function PlatformChoice({ onAnswer }: PlatformChoiceProps) {
   const answers = useContext(SurveyContext);
   const projectType = answers["Type"];
-
-  useEffect(() => {
-    if (projectType === "Web") {
-      onAnswer("");
-    }
-  }, [projectType, onAnswer]);
 
   const handleTrigger = (answer: string) => onAnswer(answer);
 

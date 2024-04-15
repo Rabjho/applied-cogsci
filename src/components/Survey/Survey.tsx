@@ -45,11 +45,10 @@ export default function Survey() {
       }
       return;
     }
-    if (questionHistory[0] == 2 && answers["Type"] === "Mobile") {
+    if (questionHistory[0] == 2 && answers["Type"] === "Web") {
       setNewQuestion(4);
       return;
     }
-    // setDirection("next");
     setNewQuestion(questionHistory[0] + 1);
   };
 
@@ -60,7 +59,6 @@ export default function Survey() {
       setNewQuestion(2);
       return;
     }
-    // setDirection("prev");
     setNewQuestion(questionHistory[0] - 1);
   };
 
