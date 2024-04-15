@@ -64,6 +64,8 @@ export default function Survey() {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const directionalSkip = () => {
+    console.log("Directional Skip");
+
     if (direction === "next") {
       nextQuestion();
     } else {
