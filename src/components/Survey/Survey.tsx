@@ -1,55 +1,77 @@
 import LandingPage from "./LandingPage/LandingPage";
 import Scope from "./Scope";
 import Type from "./Type";
+import PlatformChoice from "./PlatformChoice";
 import PrevNextButtons from "./PrevNextButtons";
 import Description from "./Description";
 import Experience from "./Experience";
 // import Priorities from "./Priorities";
 
 import { createContext, useState } from "react";
-import QueryGPT4 from "./QueryGPT4";
+// import QueryGPT4 from "./QueryGPT4";
 
-export const SurveyContext = createContext([""]);
+export const SurveyContext = createContext<{ [key: string]: string }>({});
 
 export default function Survey() {
-  const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [answers, setAnswers] = useState<string[]>([]);
+  const [questionHistory, setNewQuestionHistory] = useState<number[]>([0]);
+  const [answers, setAnswers] = useState<{ [key: string]: string }>({});
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [direction, setDirection] = useState<"next" | "prev">("next");
 
   const questionComponents = [
     LandingPage,
     Scope,
     Type,
-    // PlatformChoice,
+    PlatformChoice,
     Description,
     Experience,
     // Priorities,
   ];
 
-  const handleAnswer = (answer: string) => {
-    const newAnswers = [...answers];
-    newAnswers[currentQuestion] = answer;
+  const handleAnswer = (answer: string, nextAction: string) => {
+    const newAnswers = { ...answers };
+    newAnswers[questionComponents[questionHistory[0]].name] = answer;
     setAnswers(newAnswers);
-    nextQuestion();
+    eval(nextAction + "()"); // eval dangerous, but we're in a controlled environment
   };
 
   const nextQuestion = async () => {
     // Check if we're at the last question
-    if (currentQuestion === questionComponents.length - 1) {
+    if (questionHistory[0] === questionComponents.length - 1) {
       const apiKey = window.localStorage.getItem("apiKey");
       if (apiKey !== null) {
-        await QueryGPT4(apiKey);
+        // await QueryGPT4(apiKey);
+        console.log("Querying GPT-4");
       }
       return;
     }
-    setCurrentQuestion((prevIndex) => prevIndex + 1);
+    setDirection("next");
+    setNewQuestion(questionHistory[0] + 1);
   };
 
   const prevQuestion = () => {
     // Check if we're at the first question
-    if (currentQuestion === 0) return;
-    setCurrentQuestion(currentQuestion - 1);
+    if (questionHistory[0] === 0) return;
+    setDirection("prev");
+    setNewQuestion(questionHistory[0] - 1);
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const directionalSkip = () => {
+    if (direction === "next") {
+      nextQuestion();
+    } else {
+      prevQuestion();
+    }
+  };
+
+  const setNewQuestion = (i: number) => {
+    const newQuestionHistory = [...questionHistory];
+    newQuestionHistory.unshift(i);
+    setNewQuestionHistory(newQuestionHistory);
+  };
+
+  const currentQuestion = questionHistory[0];
   const CurrentQuestionComponent = questionComponents[currentQuestion];
 
   return (
@@ -62,7 +84,7 @@ export default function Survey() {
           <PrevNextButtons
             onNext={nextQuestion}
             onPrev={prevQuestion}
-            currentStep={currentQuestion}
+            currentStep={questionHistory[0]}
             totalSteps={questionComponents.length}
           />
         </div>
