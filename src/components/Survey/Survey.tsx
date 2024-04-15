@@ -16,7 +16,7 @@ export default function Survey() {
   const [questionHistory, setNewQuestionHistory] = useState<number[]>([0]);
   const [answers, setAnswers] = useState<{ [key: string]: string }>({});
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [direction, setDirection] = useState<"next" | "prev">("next");
+  // const [direction, setDirection] = useState<"next" | "prev">("next");
 
   const questionComponents = [
     LandingPage,
