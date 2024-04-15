@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { SurveyContext } from "./Survey";
 
 interface ExperienceProps {
-  onAnswer: (answer: string, nextAction: string) => void;
+  onAnswer: (answer: string) => void;
 }
 
 export default function Experience({ onAnswer }: ExperienceProps) {
@@ -18,7 +18,7 @@ export default function Experience({ onAnswer }: ExperienceProps) {
       </QuestionTitle>
       <InputField
         placeholder="I have experience with ..."
-        onTrigger={(answer) => onAnswer(answer, "nextQuestion")}
+        onTrigger={onAnswer}
         value={experience}
       />
     </>

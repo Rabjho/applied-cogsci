@@ -28,17 +28,11 @@ export default function Survey() {
     // Priorities,
   ];
 
-  const handleAnswer = (answer: string, nextAction: string) => {
+  const handleAnswer = (answer: string) => {
     const newAnswers = { ...answers };
     newAnswers[questionComponents[questionHistory[0]].name] = answer;
     setAnswers(newAnswers);
-    if (nextAction === "nextQuestion") {
-      nextQuestion();
-    } else if (nextAction === "prevQuestion") {
-      prevQuestion();
-    } else if (nextAction === "directionalSkip") {
-      directionalSkip();
-    }
+    nextQuestion();
   };
 
   const nextQuestion = async () => {
@@ -51,6 +45,10 @@ export default function Survey() {
       }
       return;
     }
+    if (questionHistory[0] == 2 && answers["Type"] === "Mobile") {
+      setNewQuestion(4);
+      return;
+    }
     setDirection("next");
     setNewQuestion(questionHistory[0] + 1);
   };
@@ -58,19 +56,12 @@ export default function Survey() {
   const prevQuestion = () => {
     // Check if we're at the first question
     if (questionHistory[0] === 0) return;
+    if (questionHistory[0] == 4 && answers["Type"] === "Web") {
+      setNewQuestion(2);
+      return;
+    }
     setDirection("prev");
     setNewQuestion(questionHistory[0] - 1);
-  };
-
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const directionalSkip = () => {
-    console.log("Directional Skip");
-
-    if (direction === "next") {
-      nextQuestion();
-    } else {
-      prevQuestion();
-    }
   };
 
   const setNewQuestion = (i: number) => {

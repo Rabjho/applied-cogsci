@@ -4,7 +4,7 @@ import { useContext, useEffect } from "react";
 import { SurveyContext } from "./Survey";
 
 interface PlatformChoiceProps {
-  onAnswer: (answer: string, nextAction: string) => void;
+  onAnswer: (answer: string) => void;
 }
 
 export default function PlatformChoice({ onAnswer }: PlatformChoiceProps) {
@@ -13,11 +13,11 @@ export default function PlatformChoice({ onAnswer }: PlatformChoiceProps) {
 
   useEffect(() => {
     if (projectType === "Web") {
-      onAnswer("", "directionalSkip");
+      onAnswer("");
     }
   }, [projectType, onAnswer]);
 
-  const handleTrigger = (answer: string) => onAnswer(answer, "nextQuestion");
+  const handleTrigger = (answer: string) => onAnswer(answer);
 
   return (
     <>

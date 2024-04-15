@@ -2,11 +2,14 @@ import ChoiceCards from "../ChoiceCards";
 import QuestionTitle from "../Survey/QuestionTitle";
 
 interface TypeProps {
-  onAnswer: (answer: string, nextAction: string) => void;
+  onAnswer: (answer: string) => void;
 }
 
 export default function Type({ onAnswer }: TypeProps) {
-  const handleTrigger = (answer: string) => onAnswer(answer, "nextQuestion");
+  const handleTrigger = (answer: string) => {
+    onAnswer(answer);
+  };
+
   return (
     <>
       <QuestionTitle>What type of project?</QuestionTitle>
