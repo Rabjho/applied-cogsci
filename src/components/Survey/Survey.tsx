@@ -49,7 +49,7 @@ export default function Survey() {
       setNewQuestion(4);
       return;
     }
-    setDirection("next");
+    // setDirection("next");
     setNewQuestion(questionHistory[0] + 1);
   };
 
@@ -60,7 +60,7 @@ export default function Survey() {
       setNewQuestion(2);
       return;
     }
-    setDirection("prev");
+    // setDirection("prev");
     setNewQuestion(questionHistory[0] - 1);
   };
 
