@@ -32,7 +32,13 @@ export default function Survey() {
     const newAnswers = { ...answers };
     newAnswers[questionComponents[questionHistory[0]].name] = answer;
     setAnswers(newAnswers);
-    eval(nextAction + "()"); // eval dangerous, but we're in a controlled environment
+    if (nextAction === "nextQuestion") {
+      nextQuestion();
+    } else if (nextAction === "prevQuestion") {
+      prevQuestion();
+    } else if (nextAction === "directionalSkip") {
+      directionalSkip();
+    }
   };
 
   const nextQuestion = async () => {
