@@ -15,8 +15,7 @@ export const SurveyContext = createContext<{ [key: string]: string }>({});
 export default function Survey() {
   const [questionHistory, setNewQuestionHistory] = useState<number[]>([0, 0]);
   const [answers, setAnswers] = useState<{ [key: string]: string }>({});
-  const direction =
-    questionHistory[0] - questionHistory[1] >= 0 ? "forward" : "backwards";
+  // const direction = questionHistory[0] - questionHistory[1] >= 0 ? "forward" : "backwards";
 
   const questionComponents = [
     LandingPage,
@@ -34,7 +33,7 @@ export default function Survey() {
     setAnswers(newAnswers);
 
     if (questionHistory[0] === 2 && answer === "Web") {
-      directionalSkip();
+      setNewQuestion(questionHistory[0] + 2);
       return;
     }
     nextQuestion();
@@ -61,15 +60,6 @@ export default function Survey() {
       return;
     }
     setNewQuestion(questionHistory[0] - 1);
-  };
-
-  const directionalSkip = () => {
-    // Check if we're at the last question
-    if (direction === "forward") {
-      setNewQuestion(questionHistory[0] + 2);
-    } else if (direction === "backwards") {
-      setNewQuestion(questionHistory[0] - 2);
-    }
   };
 
   const setNewQuestion = (i: number) => {
