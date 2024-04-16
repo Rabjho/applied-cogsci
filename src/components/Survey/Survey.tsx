@@ -10,13 +10,17 @@ import Experience from "./Experience";
 import { createContext, useState } from "react";
 // import QueryGPT4 from "./QueryGPT4";
 
+// Good choice of context
+// Use Record<string, string> instead of { [key: string]: string }
 export const SurveyContext = createContext<{ [key: string]: string }>({});
 
 export default function Survey() {
+  // The fuck is questionHistory
   const [questionHistory, setNewQuestionHistory] = useState<number[]>([0, 0]);
   const [answers, setAnswers] = useState<{ [key: string]: string }>({});
   // const direction = questionHistory[0] - questionHistory[1] >= 0 ? "forward" : "backwards";
 
+  // Memoize
   const questionComponents = [
     LandingPage,
     Scope,
@@ -28,10 +32,14 @@ export default function Survey() {
   ];
 
   const handleAnswer = (answer: string) => {
-    const newAnswers = { ...answers };
-    newAnswers[questionComponents[questionHistory[0]].name] = answer;
+    // Avoid mutation
+    const newAnswers = {
+      ...answers,
+      [questionComponents[questionHistory[0]].name]: answer
+    };
     setAnswers(newAnswers);
 
+    // Funky, men kan ikke finde på noget bedre
     if (questionHistory[0] === 2 && answer === "Web") {
       directionalSkip("forward");
       return;
@@ -72,12 +80,17 @@ export default function Survey() {
   };
 
   const setNewQuestion = (i: number) => {
-    const newQuestionHistory = [...questionHistory];
-    newQuestionHistory.unshift(i);
-    setNewQuestionHistory(newQuestionHistory);
+    // Ew, mutation
+    // const newQuestionHistory = [...questionHistory];
+    // newQuestionHistory.unshift(i);
+    setNewQuestionHistory([
+      i,
+      ...questionHistory
+    ]);
   };
 
   const currentQuestion = questionHistory[0];
+  // Memoize
   const CurrentQuestionComponent = questionComponents[currentQuestion];
 
   return (

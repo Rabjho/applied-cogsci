@@ -9,6 +9,7 @@ export default function CallToAction({ onTrigger }: CallToActionProps) {
   const [apiKey, setApiKey] = useState("");
 
   const handleAnswer = () => {
+    // The fuck is this?
     onTrigger('window.localStorage.getItem("apiKey")');
   };
 

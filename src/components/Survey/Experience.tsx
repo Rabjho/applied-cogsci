@@ -7,6 +7,7 @@ interface ExperienceProps {
   onAnswer: (answer: string) => void;
 }
 
+// Could possible be big searchable list of relevant technologies
 export default function Experience({ onAnswer }: ExperienceProps) {
   const answers = useContext(SurveyContext);
   const experience = answers["Experience"];

@@ -14,10 +14,12 @@ export default function InputField({
   // Get value of input field and send to onTrigger, when button is clicked
   function handleClick(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
+    // UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
     onTrigger((document.getElementById("text") as HTMLTextAreaElement).value);
   }
 
   useEffect(() => {
+    // UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
     (document.getElementById("text") as HTMLTextAreaElement).value = value;
   }, [value]);
 
