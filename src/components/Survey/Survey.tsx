@@ -8,7 +8,7 @@ import Experience from "./Experience";
 // import Priorities from "./Priorities";
 
 import { createContext, useState } from "react";
-import QueryGPT4 from "./QueryGPT4/QueryGPT4";
+// import QueryGPT4 from "./QueryGPT4/QueryGPT4";
 
 interface Answer {
   LandingPage: string;
