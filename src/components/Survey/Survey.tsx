@@ -10,82 +10,59 @@ import Experience from "./Experience";
 import { createContext, useState } from "react";
 import QueryGPT4 from "./QueryGPT4/QueryGPT4";
 
-export const SurveyContext = createContext<{ [key: string]: string }>({});
+interface Answer {
+  Type: string;
+  Scope: string;
+  PlatformChoice: string;
+  Description: string;
+  // Priorities: Record<string, number>;
+  Priorities: number[];
+}
+
+export const SurveyContext = createContext<Partial<Answer>>({});
 
 export default function Survey() {
-  const [questionHistory, setNewQuestionHistory] = useState<number[]>([0, 0]);
+  const [currentQuestion, setCurrentQuestion] = useState<number>(0);
   const [answers, setAnswers] = useState<{ [key: string]: string }>({});
-  const [direction, setDirection] = useState<"forward" | "backward">("forward");
 
   const questionComponents = [
     LandingPage,
     Scope,
     Type,
-    PlatformChoice,
+    ...(answers["Type"] !== "Web" ? [PlatformChoice] : []),
     Description,
     Experience,
     // Priorities,
   ];
 
   const handleAnswer = (answer: string) => {
-    const newAnswers = { ...answers };
-    newAnswers[questionComponents[questionHistory[0]].name] = answer;
-    newAnswers["Priorities"] = "0,0,0,0,0";
+    const newAnswers = {
+      ...answers,
+      [questionComponents[currentQuestion].name]: answer,
+    };
     setAnswers(newAnswers);
-
-    if (questionHistory[0] === 2 && answer === "Web") {
-      directionalSkip("forward");
-      return;
-    }
     nextQuestion();
   };
 
   const nextQuestion = async () => {
     // Check if we're at the last question
-    if (questionHistory[0] === questionComponents.length - 1) {
+    if (currentQuestion === questionComponents.length - 1) {
       const apiKey = window.localStorage.getItem("apiKey");
       if (apiKey !== null) {
-        await QueryGPT4(apiKey, answers);
-        // console.log("Querying GPT-4");
+        // await QueryGPT4(apiKey, answers);
+        console.log("Querying GPT-4");
       }
       return;
     }
-    setDirection("forward");
-    setNewQuestion(questionHistory[0] + 1);
+    setCurrentQuestion(currentQuestion + 1);
   };
 
   const prevQuestion = () => {
     // Check if we're at the first question
-    if (questionHistory[0] === 0) return;
-    setDirection("backward");
-    if (questionHistory[0] === 4 && answers["Type"] === "Web") {
-      console.log("skipping back to scope");
-      console.log(direction);
-
-      directionalSkip(direction);
-      return;
-    }
-    setNewQuestion(questionHistory[0] - 1);
+    if (currentQuestion === 0) return;
+    setCurrentQuestion(currentQuestion - 1);
   };
 
-  const directionalSkip = (direction: string) => {
-    if (direction === "forward") {
-      setNewQuestion(questionHistory[0] + 2);
-    } else if (direction === "backward") {
-      console.log(questionHistory[0]);
-      console.log(questionHistory[0] - 2);
-
-      setNewQuestion(questionHistory[0] - 2);
-    }
-  };
-
-  const setNewQuestion = (i: number) => {
-    const newQuestionHistory = [...questionHistory];
-    newQuestionHistory.unshift(i);
-    setNewQuestionHistory(newQuestionHistory);
-  };
-
-  const currentQuestion = questionHistory[0];
   const CurrentQuestionComponent = questionComponents[currentQuestion];
 
   return (
@@ -98,7 +75,7 @@ export default function Survey() {
           <PrevNextButtons
             onNext={nextQuestion}
             onPrev={prevQuestion}
-            currentStep={questionHistory[0]}
+            currentStep={currentQuestion}
             totalSteps={questionComponents.length}
           />
         </div>
