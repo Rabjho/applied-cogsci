@@ -1,14 +1,15 @@
 import OpenAI from "openai";
-import inputPrompt from "./input.json?raw";
-import outputPrompt from "./output.json?raw";
+import inputPrompt from "./inputTemplate.json?raw";
+import outputPrompt from "./outputTemplate.json?raw";
 import systemPrompt1 from "./systemPrompt1.txt?raw";
 import systemPrompt2 from "./systemPrompt2.txt?raw";
+import { Answer } from "../Survey";
 
 export default async function QueryGPT4(
   apiKey: string,
-  answers: { [key: string]: string },
+  answers: Partial<Answer>,
 ) {
-  const priorities = answers["Priorities"].split(",").map((x) => parseInt(x));
+  const priorities = answers["Priorities"] || [0, 0, 0, 0, 0];
 
   const openai = new OpenAI({ apiKey: apiKey, dangerouslyAllowBrowser: true });
 
@@ -20,10 +21,11 @@ export default async function QueryGPT4(
           systemPrompt1 +
           '\n"""' +
           inputPrompt +
-          '\n"""' +
+          '\n"""\n\n' +
           systemPrompt2 +
           '\n"""' +
-          outputPrompt,
+          outputPrompt +
+          '\n"""',
       },
       {
         role: "user",
@@ -47,11 +49,12 @@ export default async function QueryGPT4(
         `,
       },
     ],
-    model: "gpt-3.5-turbo",
+    model: "gpt-4-turbo",
     response_format: { type: "json_object" },
   });
 
-  const resp = completion.choices[0].message.content;
-  const jsonReturn = JSON.parse(resp || "{}");
-  return jsonReturn;
+  const resp = completion.choices[0].message.content || "";
+  return resp;
+  // const jsonReturn = JSON.parse(resp || "{}");
+  // return jsonReturn;
 }

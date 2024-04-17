@@ -1,7 +1,7 @@
 {
-  "servers": ["AWS", "Azure", "Cloudflare"], // Needs to be a list of three (3) server/load balancing/cloud providers
   "stacks": [
     {
+      "provider": "AWS", // Server/load balancing/cloud provider of your choice
       "database": "MongoDB",
       "backend": "Flask",
       "frontend": {
@@ -13,6 +13,7 @@
       "description": "Argumentation for and against this tech stack" // Be sure to replace the string with the actual reasons/description of the tech stack
     },
     {
+      "provider": "Azure", // Server/load balancing/cloud provider of your choice
       "database": "MySQL",
       "backend": "Sveltekit",
       "frontend": {
@@ -24,6 +25,7 @@
       "description": "Argumentation for and against this tech stack" // Be sure to replace the string with the actual reasons/description of the tech stack
     },
     {
+      "provider": "Cloudflare", // Server/load balancing/cloud provider of your choice
       "database": "PostgreSQL",
       "backend": "Node.js",
       "frontend": {
