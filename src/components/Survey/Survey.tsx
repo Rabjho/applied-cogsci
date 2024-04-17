@@ -8,14 +8,14 @@ import Experience from "./Experience";
 // import Priorities from "./Priorities";
 
 import { createContext, useState } from "react";
-// import QueryGPT4 from "./QueryGPT4";
+import QueryGPT4 from "./QueryGPT4/QueryGPT4";
 
 export const SurveyContext = createContext<{ [key: string]: string }>({});
 
 export default function Survey() {
   const [questionHistory, setNewQuestionHistory] = useState<number[]>([0, 0]);
   const [answers, setAnswers] = useState<{ [key: string]: string }>({});
-  // const direction = questionHistory[0] - questionHistory[1] >= 0 ? "forward" : "backwards";
+  const [direction, setDirection] = useState<"forward" | "backward">("forward");
 
   const questionComponents = [
     LandingPage,
@@ -30,6 +30,7 @@ export default function Survey() {
   const handleAnswer = (answer: string) => {
     const newAnswers = { ...answers };
     newAnswers[questionComponents[questionHistory[0]].name] = answer;
+    newAnswers["Priorities"] = "0,0,0,0,0";
     setAnswers(newAnswers);
 
     if (questionHistory[0] === 2 && answer === "Web") {
@@ -44,29 +45,36 @@ export default function Survey() {
     if (questionHistory[0] === questionComponents.length - 1) {
       const apiKey = window.localStorage.getItem("apiKey");
       if (apiKey !== null) {
-        // await QueryGPT4(apiKey);
-        console.log("Querying GPT-4");
+        await QueryGPT4(apiKey, answers);
+        // console.log("Querying GPT-4");
       }
       return;
     }
+    setDirection("forward");
     setNewQuestion(questionHistory[0] + 1);
   };
 
   const prevQuestion = () => {
     // Check if we're at the first question
     if (questionHistory[0] === 0) return;
+    setDirection("backward");
     if (questionHistory[0] === 4 && answers["Type"] === "Web") {
-      directionalSkip("backwards");
+      console.log("skipping back to scope");
+      console.log(direction);
+
+      directionalSkip(direction);
       return;
     }
     setNewQuestion(questionHistory[0] - 1);
   };
 
   const directionalSkip = (direction: string) => {
-    // Check if we're at the last question
     if (direction === "forward") {
       setNewQuestion(questionHistory[0] + 2);
-    } else if (direction === "backwards") {
+    } else if (direction === "backward") {
+      console.log(questionHistory[0]);
+      console.log(questionHistory[0] - 2);
+
       setNewQuestion(questionHistory[0] - 2);
     }
   };

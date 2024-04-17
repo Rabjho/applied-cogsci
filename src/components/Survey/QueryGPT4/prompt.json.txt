@@ -1,0 +1,39 @@
+{
+   "servers": ["AWS", "Azure", "Similar"], // Needs to be a list of three (3) server providers
+   "stacks": [
+    {
+     "database": "MongoDB",
+     "backend": "Flask",
+     "frontend": {
+      "primary": "react",
+      "secondaries": ["tailwindcss", "others"] // List which might contain items like "redux", "sass", "typescript", etc. but might also be empty
+     },
+     "pros": ["Well documented", "Scalable", "etc."], // Same rules as the secondaries list
+     "cons": ["Boilerplate", "Expensive"], // Same rules as above
+     "description": "Argumentation for and against this tech stack" // Be sure to replace the string with the actual reasons/description of the tech stack
+    },
+    {
+     "database": "MySQL",
+     "backend": "Sveltekit",
+     "frontend": {
+      "primary": "Svelte",
+      "secondaries": ["scss", "..."] // This has the same rules as the previous secondaries list
+     },
+     "pros": ["Quick to develop"], // Same rules as before
+     "cons": ["Poor documentation"], // Same rules as before
+     "description": "Argumentation for and against this tech stack" // Be sure to replace the string with the actual reasons/description of the tech stack
+    },
+    {
+     "database": "PostgreSQL",
+     "backend": "Node.js",
+     "frontend": {
+      "primary": "Angular",
+      "secondaries": ["sass", "redux"] // This has the same rules as the previous secondaries list
+     },
+     "pros": ["Cheap pricing", "Performant"], // Same rules as before
+     "cons": ["Proprietary"], // Same rules as before
+     "description": "Argumentation for and against this tech stack" // Be sure to replace the string with the actual reasons/description of the tech stack
+    }
+   ],
+   "comments": "Additional comments, e.g. if iOS development, note here that it requires a Macbook"
+  }

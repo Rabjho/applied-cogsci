@@ -21,7 +21,8 @@
     "noFallthroughCasesInSwitch": true,
 
     "types": [
-      "vite/client" // if using vite
+      "vite/client", // if using vite
+      "node"
     ]
   },
   "include": ["src"],
