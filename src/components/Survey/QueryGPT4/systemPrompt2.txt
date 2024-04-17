@@ -1,0 +1,2 @@
+You should give your recommendations in the form of a JSON object with the following structure. It is very important that you adhere to the structure, but not the current example values in the template.
+Come with your own recommendations taking into account the clients specified information.

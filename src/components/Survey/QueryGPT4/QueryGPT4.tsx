@@ -1,6 +1,8 @@
-// TODO The results should contain pros and cons for each of the tech stacks.
-
 import OpenAI from "openai";
+import inputPrompt from "./input.json?raw";
+import outputPrompt from "./output.json?raw";
+import systemPrompt1 from "./systemPrompt1.txt?raw";
+import systemPrompt2 from "./systemPrompt2.txt?raw";
 
 export default async function QueryGPT4(
   apiKey: string,
@@ -14,7 +16,14 @@ export default async function QueryGPT4(
     messages: [
       {
         role: "system",
-        content: "prompt",
+        content:
+          systemPrompt1 +
+          '\n"""' +
+          inputPrompt +
+          '\n"""' +
+          systemPrompt2 +
+          '\n"""' +
+          outputPrompt,
       },
       {
         role: "user",
