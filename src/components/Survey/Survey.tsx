@@ -7,7 +7,7 @@ import Description from "./Description";
 import Experience from "./Experience";
 // import Priorities from "./Priorities";
 
-import { createContext, useState } from "react";
+import { createContext, useMemo, useState } from "react";
 // import QueryGPT4 from "./QueryGPT4/QueryGPT4";
 
 interface Answer {
@@ -25,17 +25,22 @@ export const SurveyContext = createContext<Partial<Answer>>({});
 
 export default function Survey() {
   const [currentQuestion, setCurrentQuestion] = useState<number>(0);
-  const [answers, setAnswers] = useState<{ [key: string]: string }>({});
+  const [answers, setAnswers] = useState<Partial<Answer>>({});
 
-  const questionComponents = [
-    LandingPage,
-    Scope,
-    Type,
-    ...(answers["Type"] !== "Web" ? [PlatformChoice] : []),
-    Description,
-    Experience,
-    // Priorities,
-  ];
+  const questionComponents = useMemo(
+    () => [
+      { name: "LandingPage", component: LandingPage },
+      { name: "Scope", component: Scope },
+      { name: "Type", component: Type },
+      ...(answers.Type !== "Web"
+        ? [{ name: "PlatformChoice", component: PlatformChoice }]
+        : []),
+      { name: "Description", component: Description },
+      { name: "Experience", component: Experience },
+      // {name: 'Priorities', component: Priorities},
+    ],
+    [answers.Type],
+  );
 
   const handleAnswer = (answer: string) => {
     const newAnswers = {
@@ -65,7 +70,10 @@ export default function Survey() {
     setCurrentQuestion(currentQuestion - 1);
   };
 
-  const CurrentQuestionComponent = questionComponents[currentQuestion];
+  const CurrentQuestionComponent = useMemo(
+    () => questionComponents[currentQuestion].component,
+    [currentQuestion, questionComponents],
+  );
 
   return (
     <>

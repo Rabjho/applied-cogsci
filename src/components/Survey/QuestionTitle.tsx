@@ -1,7 +1,7 @@
+import { PropsWithChildren } from "react";
+
 export default function QuestionTitle({
   children,
-}: {
-  children: React.ReactNode;
-}) {
+}: PropsWithChildren<unknown>) {
   return <div className="text-primary text-2xl">{children}</div>;
 }
