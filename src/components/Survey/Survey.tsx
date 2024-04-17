@@ -11,11 +11,13 @@ import { createContext, useState } from "react";
 import QueryGPT4 from "./QueryGPT4/QueryGPT4";
 
 interface Answer {
+  LandingPage: string;
   Type: string;
   Scope: string;
   PlatformChoice: string;
   Description: string;
   // Priorities: Record<string, number>;
+  Experience: string;
   Priorities: number[];
 }
 
