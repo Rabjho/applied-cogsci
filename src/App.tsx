@@ -1,12 +1,17 @@
 import "./App.css";
 import Survey from "./components/Survey/Survey";
+import { useState } from "react";
+import Recommendation from "./components/Recommendation/Recommendation";
 
 export default function App() {
+  const [results, setResults] = useState<string>("");
+
   return (
     <>
       <div className="vertical h-screen">
         <Logo />
-        <Survey />
+        {!results && <Survey onResults={(r) => setResults(r)} />}
+        {results && <Recommendation results={results} />}
       </div>
     </>
   );

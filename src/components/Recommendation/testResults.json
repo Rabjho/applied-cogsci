@@ -1,0 +1,35 @@
+{
+  "stacks": [
+    {
+      "name": "tab1",
+      "provider": "AWS",
+      "database": "DynamoDB",
+      "backend": "Python-Flask",
+      "frontend": { "primary": "React", "secondaries": ["Redux", "Bootstrap"] },
+      "pros": ["Scalable", "Flexible", "Secure"],
+      "cons": ["Costly", "Complex Setup"],
+      "description": "AWS with DynamoDB provides a robust and scalable environment. Flask as a backend simplifies development whereas React with Redux ensures a responsive and state-managed frontend. AWS's scalability ensures that the project can grow."
+    },
+    {
+      "name": "tab2",
+      "provider": "Google Cloud Platform",
+      "database": "Firestore",
+      "backend": "Node.js",
+      "frontend": { "primary": "Vue.js", "secondaries": ["Vuex", "Vuetify"] },
+      "pros": ["Real-time DB", "Quick Deployment", "Intuitive"],
+      "cons": ["Limited Queries", "Vendor Lock-in"],
+      "description": "GCP's Firestore offers real-time capabilities ideal for dynamic content updating which is useful for a survey-based application. Node.js provides an efficient server-side solution, and Vue.js offers a progressive framework for the frontend, making it developer-friendly and suitable for quick prototyping."
+    },
+    {
+      "name": "tab3",
+      "provider": "Heroku",
+      "database": "PostgreSQL",
+      "backend": "Ruby on Rails",
+      "frontend": { "primary": "Angular", "secondaries": ["Angular Material"] },
+      "pros": ["Easy to setup", "Pre-integrated", "Cost-Effective"],
+      "cons": ["Less Scalable", "Performance Hits"],
+      "description": "Heroku provides easy setup and is budget-friendly, matched with PostgreSQL for strong relational data handling. Ruby on Rails offers a convention-over-configuration approach that speeds up development. Angular provides a comprehensive front-end framework that works well with Rails."
+    }
+  ],
+  "comments": "All stacks are chosen to optimize development ease and presentation for a survey-based web application. Considerations for scalability and cost were balanced with the desire for a straightforward implementation."
+}

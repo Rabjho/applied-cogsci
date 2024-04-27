@@ -55,6 +55,4 @@ export default async function QueryGPT4(
 
   const resp = completion.choices[0].message.content || "";
   return resp;
-  // const jsonReturn = JSON.parse(resp || "{}");
-  // return jsonReturn;
 }

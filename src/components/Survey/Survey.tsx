@@ -9,6 +9,7 @@ import Experience from "./Experience";
 
 import { createContext, useMemo, useState } from "react";
 import QueryGPT4 from "./QueryGPT/QueryGPT";
+// import testResults from "../Recommendation/testResults.json?raw";
 
 export interface Answer {
   LandingPage: string;
@@ -16,14 +17,18 @@ export interface Answer {
   Scope: string;
   Platform: string;
   Description: string;
-  // Priorities: Record<string, number>;
   Experience: string;
+  // Priorities: Record<string, number>;
   Priorities: number[];
 }
 
 export const SurveyContext = createContext<Partial<Answer>>({});
 
-export default function Survey() {
+interface SurveyProps {
+  onResults: (results: string) => void;
+}
+
+export default function Survey({ onResults }: SurveyProps) {
   const [currentQuestion, setCurrentQuestion] = useState<number>(0);
   const [answers, setAnswers] = useState<Partial<Answer>>({});
   let results = "";
@@ -59,8 +64,8 @@ export default function Survey() {
       if (apiKey !== null) {
         console.log("Querying GPT-4");
         results = await QueryGPT4(apiKey, answers);
-
-        console.log(results);
+        // results = testResults;
+        onResults(results);
       }
       return;
     }

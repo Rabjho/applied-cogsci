@@ -1,6 +1,7 @@
 {
   "stacks": [
     {
+      "name": "MERN", // Name of the tech stack, e.g. "MERN", "MEAN", "LAMP", "LEMP", "JAMstack", "MERN", etc. should only be ONE (1) word
       "provider": "AWS", // Server/load balancing/cloud provider of your choice
       "database": "MongoDB",
       "backend": "Flask",
@@ -13,6 +14,7 @@
       "description": "Argumentation for and against this tech stack" // Be sure to replace the string with the actual reasons/description of the tech stack
     },
     {
+      "name": "MEAN",
       "provider": "Azure", // Server/load balancing/cloud provider of your choice
       "database": "MySQL",
       "backend": "Sveltekit",
@@ -25,6 +27,7 @@
       "description": "Argumentation for and against this tech stack" // Be sure to replace the string with the actual reasons/description of the tech stack
     },
     {
+      "name": "JAMstack",
       "provider": "Cloudflare", // Server/load balancing/cloud provider of your choice
       "database": "PostgreSQL",
       "backend": "Node.js",
