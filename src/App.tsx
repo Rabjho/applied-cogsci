@@ -2,6 +2,7 @@ import "./App.css";
 import Survey from "./components/Survey/Survey";
 import { useState } from "react";
 import Recommendation from "./components/Recommendation/Recommendation";
+import Loading from "./components/Loading";
 
 export default function App() {
   const [results, setResults] = useState<string>("");

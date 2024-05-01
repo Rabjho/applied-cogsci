@@ -5,6 +5,7 @@ import PlatformChoice from "./PlatformChoice";
 import PrevNextButtons from "./PrevNextButtons";
 import Description from "./Description";
 import Experience from "./Experience";
+import Loading from "../Loading";
 // import Priorities from "./Priorities";
 
 import { createContext, useMemo, useState } from "react";
@@ -43,6 +44,7 @@ export default function Survey({ onResults }: SurveyProps) {
         : []),
       { name: "Description", component: Description },
       { name: "Experience", component: Experience },
+      { name: "Loading", component: Loading },
       // {name: 'Priorities', component: Priorities},
     ],
     [answers.Type],
@@ -59,10 +61,11 @@ export default function Survey({ onResults }: SurveyProps) {
 
   const nextQuestion = async () => {
     // Check if we're at the last question
-    if (currentQuestion === questionComponents.length - 1) {
+    if (currentQuestion === questionComponents.length - 2) {
       const apiKey = window.localStorage.getItem("apiKey");
       if (apiKey !== null) {
         console.log("Querying GPT-4");
+        setCurrentQuestion(currentQuestion + 1);
         results = await QueryGPT4(apiKey, answers);
         // results = testResults;
         onResults(results);
