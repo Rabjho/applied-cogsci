@@ -7,7 +7,7 @@ interface RecommendationProps {
 
 export interface Stack {
   name: string;
-  provider: string;
+  // provider: string;
   database: string;
   backend: string;
   frontend: {

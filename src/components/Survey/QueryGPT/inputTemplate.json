@@ -1,5 +1,4 @@
 {
-  "scope": "MVP", // Either "MVP" or "Full product"
   "type": "Web", // Either "Web", "Mobile" or "Desktop"
   "Platform": "", // This depends on the previous type, Web is agnostic while Mobile can be iOS, Android or both, similarly Desktop can be MacOS, Windows or both (note that MacOS can also be considered UNIX)
   "Description": "A longer prose description of the project, its requirements and what the project actually will be doing", // It is important to take into account what the project is about when recommending a tech stack. If the description is very vague or it doesn't necessitate any specific considerations, then don't.
