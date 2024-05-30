@@ -1,5 +1,5 @@
 import LandingPage from "./LandingPage/LandingPage";
-import Scope from "./Scope";
+// import Scope from "./Scope";
 import Type from "./Type";
 import PlatformChoice from "./PlatformChoice";
 import PrevNextButtons from "./PrevNextButtons";
@@ -15,7 +15,7 @@ import QueryGPT4 from "./QueryGPT/QueryGPT";
 export interface Answer {
   LandingPage: string;
   Type: string;
-  // Scope: string;
+  Scope: string;
   Platform: string;
   Description: string;
   Experience: string;
@@ -37,7 +37,7 @@ export default function Survey({ onResults }: SurveyProps) {
   const questionComponents = useMemo(
     () => [
       { name: "LandingPage", component: LandingPage },
-      { name: "Scope", component: Scope },
+      // { name: "Scope", component: Scope },
       { name: "Type", component: Type },
       ...(answers.Type !== "Web"
         ? [{ name: "PlatformChoice", component: PlatformChoice }]
