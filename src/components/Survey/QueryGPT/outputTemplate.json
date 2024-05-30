@@ -2,7 +2,6 @@
   "stacks": [
     {
       "name": "MERN", // Name of the tech stack, e.g. "MERN", "MEAN", "LAMP", "LEMP", "JAMstack", "MERN", etc. should only be ONE (1) word
-      "provider": "AWS", // Server/load balancing/cloud provider of your choice
       "database": "MongoDB",
       "backend": "Flask",
       "frontend": {
@@ -15,7 +14,6 @@
     },
     {
       "name": "MEAN",
-      "provider": "Azure", // Server/load balancing/cloud provider of your choice
       "database": "MySQL",
       "backend": "Sveltekit",
       "frontend": {
@@ -28,7 +26,6 @@
     },
     {
       "name": "JAMstack",
-      "provider": "Cloudflare", // Server/load balancing/cloud provider of your choice
       "database": "PostgreSQL",
       "backend": "Node.js",
       "frontend": {
