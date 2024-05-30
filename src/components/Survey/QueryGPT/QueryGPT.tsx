@@ -32,7 +32,6 @@ export default async function QueryGPT4(
         content: `
           """json
           {
-            "scope": "${answers["Scope"]}",
             "type": "${answers["Type"]}",
             "Platform": "${answers["Platform"]},
             "Description": "${answers["Description"]}",

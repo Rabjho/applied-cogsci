@@ -15,7 +15,7 @@ import QueryGPT4 from "./QueryGPT/QueryGPT";
 export interface Answer {
   LandingPage: string;
   Type: string;
-  Scope: string;
+  // Scope: string;
   Platform: string;
   Description: string;
   Experience: string;
