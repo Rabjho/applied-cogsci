@@ -25,8 +25,6 @@ export default function Techstack({ stack }: TechstackProps) {
         <p className="bg-slate-200">{stack.backend}</p>
         <h1 className="text-2xl font-semibold">Database</h1>
         <p className="bg-slate-200">{stack.database}</p>
-        <h1 className="text-2xl font-semibold">Provider</h1>
-        <p className="bg-slate-200">{stack.provider}</p>
         <h1 className="text-2xl font-semibold">Pros</h1>
         <div className="grid grid-cols-2 gap-4">
           {stack.pros.map((pro) => (
