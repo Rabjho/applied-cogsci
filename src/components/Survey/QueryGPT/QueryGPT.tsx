@@ -9,8 +9,6 @@ export default async function QueryGPT4(
   apiKey: string,
   answers: Partial<Answer>,
 ) {
-  const priorities = answers["Priorities"] || [0, 0, 0, 0, 0];
-
   const openai = new OpenAI({ apiKey: apiKey, dangerouslyAllowBrowser: true });
 
   const completion = await openai.chat.completions.create({
@@ -32,19 +30,11 @@ export default async function QueryGPT4(
         content: `
           """json
           {
-            "scope": "${answers["Scope"]}",
             "type": "${answers["Type"]}",
             "Platform": "${answers["Platform"]},
             "Description": "${answers["Description"]}",
             "Experience": "${answers["Experience"]},
-            "Priorities": {
-                "Ease to develop": ${priorities[0]},
-                "Scaling": ${priorities[1]},
-                "Cheap": ${priorities[2]},
-                "Performance": ${priorities[3]},
-                "Security": ${priorities[4]}
-              }
-          }
+
           """
         `,
       },

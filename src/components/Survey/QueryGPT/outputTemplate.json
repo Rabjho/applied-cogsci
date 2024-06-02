@@ -1,41 +1,40 @@
 {
   "stacks": [
     {
-      "name": "MERN", // Name of the tech stack, e.g. "MERN", "MEAN", "LAMP", "LEMP", "JAMstack", "MERN", etc. should only be ONE (1) word
-      "database": "MongoDB",
-      "backend": "Flask",
+      "name": "placeholder", // Name of the tech stack
+      "database": "placeholder",
+      "backend": "placeholder",
       "frontend": {
-        "primary": "react",
-        "secondaries": ["tailwindcss", "others"] // List which might contain items like "redux", "sass", "typescript", etc. but might also be empty
+        "primary": "placeholder",
+        "secondaries": ["placeholder1", "placeholder2", "..."] // List which might contain items like "redux", "sass", "typescript", etc. but might also be empty
       },
-      "pros": ["Well documented", "Scalable", "etc."], // Same rules as the secondaries list
-      "cons": ["Boilerplate", "Expensive"], // Same rules as above
-      "description": "Argumentation for and against this tech stack" // Be sure to replace the string with the actual reasons/description of the tech stack
+      "pros": ["placeholder1", "placeholder2", "..."], // Same rules as the secondaries list
+      "cons": ["placeholder1", "..."], // Same rules as above
+      "description": "placeholder" // Argumentation for and against this tech stack, reasoning why it is good or bad think step-by-step
     },
     {
-      "name": "MEAN",
-      "database": "MySQL",
-      "backend": "Sveltekit",
+      "name": "placeholder",
+      "database": "placeholder",
+      "backend": "placeholder",
       "frontend": {
-        "primary": "Svelte",
-        "secondaries": ["scss", "..."] // This has the same rules as the previous secondaries list
+        "primary": "placeholder",
+        "secondaries": ["placeholder1", "..."] // This has the same rules as the previous secondaries list
       },
-      "pros": ["Quick to develop"], // Same rules as before
-      "cons": ["Poor documentation"], // Same rules as before
-      "description": "Argumentation for and against this tech stack" // Be sure to replace the string with the actual reasons/description of the tech stack
+      "pros": ["placeholder1"], // Same rules as before
+      "cons": ["placeholder1"], // Same rules as before
+      "description": "placeholder" // Be sure to replace the string with the actual reasons/description of the tech stack
     },
     {
-      "name": "JAMstack",
-      "database": "PostgreSQL",
-      "backend": "Node.js",
+      "name": "placeholder",
+      "database": "placeholder",
+      "backend": "placeholder",
       "frontend": {
-        "primary": "Angular",
-        "secondaries": ["sass", "redux"] // This has the same rules as the previous secondaries list
+        "primary": "placeholder",
+        "secondaries": ["placeholder1", "placeholder2"] // This has the same rules as the previous secondaries list
       },
-      "pros": ["Cheap pricing", "Performant"], // Same rules as before
-      "cons": ["Proprietary"], // Same rules as before
-      "description": "Argumentation for and against this tech stack" // Be sure to replace the string with the actual reasons/description of the tech stack
+      "pros": ["placeholder1"], // Same rules as before
+      "cons": ["placeholder1"], // Same rules as before
+      "description": "placeholder" // Be sure to replace the string with the actual reasons/description of the tech stack
     }
-  ],
-  "comments": "Additional comments, e.g. if iOS development, note here that it requires a Macbook"
+  ]
 }

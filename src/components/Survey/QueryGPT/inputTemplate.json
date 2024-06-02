@@ -2,13 +2,5 @@
   "type": "Web", // Either "Web", "Mobile" or "Desktop"
   "Platform": "", // This depends on the previous type, Web is agnostic while Mobile can be iOS, Android or both, similarly Desktop can be MacOS, Windows or both (note that MacOS can also be considered UNIX)
   "Description": "A longer prose description of the project, its requirements and what the project actually will be doing", // It is important to take into account what the project is about when recommending a tech stack. If the description is very vague or it doesn't necessitate any specific considerations, then don't.
-  "Experience": "A longer prose text where possibly relevant previous experience of the developer is documented", // Take this into consideration when coming up with tech stack recommendations.
-  "Priorities": {
-    // Numbers for priorities of the developer which total less than 15
-    "Ease to develop": 3, // Higher is easier
-    "Scaling": 1, // Higher is more scalable
-    "Cheap": 5, // Higher is cheaper/free
-    "Performance": 2, // Higher is more performant/quicker
-    "Security": 4 // Higher is more secure
-  }
+  "Experience": "A longer prose text where possibly relevant previous experience of the developer is documented" // Take this into consideration when coming up with tech stack recommendations.
 }
