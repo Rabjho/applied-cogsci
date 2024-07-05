@@ -18,7 +18,12 @@ export default function Tabs({ tabs }: TabsProps) {
         {tabs.map((tab: Tab) => (
           <button
             key={tab.name}
-            className={`px-4 py-2 font-semibold ${activeTab === tab.name ? "bg-blue-500 text-white" : "bg-white text-blue-500"}`}
+            className={`px-4 py-2 focus:outline-none ${
+              activeTab === tab.name
+                ? "border-b-2 border-blue-500 text-blue-500"
+                : "text-gray-500"
+            }`}
+            style={{ width: `calc(100% / ${tabs.length})` }}
             onClick={() => setActiveTab(tab.name)}
           >
             {tab.name}

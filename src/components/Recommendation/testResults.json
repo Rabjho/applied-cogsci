@@ -1,35 +1,40 @@
 {
   "stacks": [
     {
-      "name": "tab1",
-      "provider": "AWS",
-      "database": "DynamoDB",
-      "backend": "Python-Flask",
-      "frontend": { "primary": "React", "secondaries": ["Redux", "Bootstrap"] },
-      "pros": ["Scalable", "Flexible", "Secure"],
-      "cons": ["Costly", "Complex Setup"],
-      "description": "AWS with DynamoDB provides a robust and scalable environment. Flask as a backend simplifies development whereas React with Redux ensures a responsive and state-managed frontend. AWS's scalability ensures that the project can grow."
+      "name": "MERN Stack",
+      "database": "MongoDB",
+      "backend": "Express.js",
+      "frontend": {
+        "primary": "React.js",
+        "secondaries": ["Redux", "Sass"]
+      },
+      "pros": ["Javascript", "Scalable", "Community"],
+      "cons": ["Learning curve", "Performance"],
+      "description": "The MERN stack is a popular choice for building dynamic web applications. It utilizes JavaScript across the stack, making it simpler for someone with existing JavaScript knowledge to adopt. React.js offers a powerful and flexible frontend, ideal for a drag-and-drop interface. MongoDB's flexible schema makes it more adaptable for storing diverse design templates."
     },
     {
-      "name": "tab2",
-      "provider": "Google Cloud Platform",
-      "database": "Firestore",
-      "backend": "Node.js",
-      "frontend": { "primary": "Vue.js", "secondaries": ["Vuex", "Vuetify"] },
-      "pros": ["Real-time DB", "Quick Deployment", "Intuitive"],
-      "cons": ["Limited Queries", "Vendor Lock-in"],
-      "description": "GCP's Firestore offers real-time capabilities ideal for dynamic content updating which is useful for a survey-based application. Node.js provides an efficient server-side solution, and Vue.js offers a progressive framework for the frontend, making it developer-friendly and suitable for quick prototyping."
+      "name": "LAMP Stack",
+      "database": "MySQL",
+      "backend": "PHP",
+      "frontend": {
+        "primary": "HTML/CSS/JavaScript",
+        "secondaries": ["Bootstrap"]
+      },
+      "pros": ["Stable", "Mature", "Cost-effective"],
+      "cons": ["Not as modern", "Less scalable", "Less dynamic"],
+      "description": "The LAMP stack is a tried-and-true collection of technologies for web development. While it may not be the most cutting-edge, its stability and maturity can be beneficial. MySQL provides a robust database solution, and PHP is widely known and easy to deploy. This stack will be a safe choice for a beginner transitioning from design to full-stack development."
     },
     {
-      "name": "tab3",
-      "provider": "Heroku",
-      "database": "PostgreSQL",
-      "backend": "Ruby on Rails",
-      "frontend": { "primary": "Angular", "secondaries": ["Angular Material"] },
-      "pros": ["Easy to setup", "Pre-integrated", "Cost-Effective"],
-      "cons": ["Less Scalable", "Performance Hits"],
-      "description": "Heroku provides easy setup and is budget-friendly, matched with PostgreSQL for strong relational data handling. Ruby on Rails offers a convention-over-configuration approach that speeds up development. Angular provides a comprehensive front-end framework that works well with Rails."
+      "name": "Serverless w/ React",
+      "database": "Firebase",
+      "backend": "Serverless (AWS Lambda)",
+      "frontend": {
+        "primary": "React.js",
+        "secondaries": ["Material-UI", "TypeScript"]
+      },
+      "pros": ["Scalable", "No infrastructure", "Fast development"],
+      "cons": ["Vendor lock-in", "Cold start", "Complex debugging"],
+      "description": "Serverless architecture offers scalability and faster development since infrastructure management is abstracted away. Firebase provides a fully managed, scalable NoSQL database that's easy to integrate with a web application. React.js as the frontend, complemented with Material-UI and TypeScript, will offer a modern, smooth, and type-safe development experience. This stack is beneficial for rapidly growing applications where scalability is crucial."
     }
-  ],
-  "comments": "All stacks are chosen to optimize development ease and presentation for a survey-based web application. Considerations for scalability and cost were balanced with the desire for a straightforward implementation."
+  ]
 }

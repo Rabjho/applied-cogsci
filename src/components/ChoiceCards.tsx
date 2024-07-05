@@ -11,11 +11,11 @@ export default function ChoiceCards({ choices, onTrigger }: ChoiceCardsProps) {
   }
 
   return (
-    <div className="vertical center-h center-v h-60 w-60">
+    <div className="vertical center-h center-v">
       {choices.map((choice, index) => (
         <button
           key={index}
-          className="m-2 h-full w-full bg-slate-200 p-2"
+          className="m-2 h-full w-full rounded-xl bg-slate-200 px-20 py-4 font-medium hover:bg-slate-300 focus:outline"
           onClick={onClick}
         >
           {choice}

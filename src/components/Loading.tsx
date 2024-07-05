@@ -2,13 +2,9 @@ export default function Loading() {
   return (
     <>
       <div className="flex h-screen w-screen items-center justify-center">
-        <button
-          type="button"
-          className="flex items-center rounded-lg bg-green-700 px-4 py-2 text-white"
-          disabled
-        >
+        <div className="flex items-center rounded-lg bg-blue-500 py-2 pl-2 pr-4 text-white">
           <svg
-            className="mr-3 h-5 w-5 animate-spin text-white"
+            className="mx-2 h-5 w-5 animate-spin text-white"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
@@ -28,7 +24,7 @@ export default function Loading() {
             ></path>
           </svg>
           <span className="font-medium"> Loading... </span>
-        </button>
+        </div>
       </div>
     </>
   );
